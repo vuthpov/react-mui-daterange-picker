@@ -1,18 +1,11 @@
-import {
-  WithStyles,
-  Grid,
-  createStyles,
-  withStyles,
-  IconButton,
-  Select,
-  MenuItem,
-} from '@material-ui/core'
+import { Grid, IconButton, Select, MenuItem } from '@material-ui/core'
 import React from 'react'
 import ChevronLeft from '@material-ui/icons/ChevronLeft'
 import ChevronRight from '@material-ui/icons/ChevronRight'
 import { setMonth, getMonth, setYear, getYear } from 'date-fns'
+import { makeStyles } from '@mui/styles'
 
-interface HeaderProps extends WithStyles<typeof styles> {
+interface HeaderProps {
   date: Date
   setDate: (date: Date) => void
   nextDisabled: boolean
@@ -21,7 +14,7 @@ interface HeaderProps extends WithStyles<typeof styles> {
   onClickPrevious: () => void
 }
 
-const styles = createStyles({
+const useStyles = makeStyles(() => ({
   iconContainer: {
     padding: 5,
   },
@@ -31,7 +24,7 @@ const styles = createStyles({
       background: 'none',
     },
   },
-})
+}))
 
 const MONTHS = [
   'Jan',
@@ -57,13 +50,14 @@ const generateYears = (relativeTo: Date, count: number) => {
 
 const Header: React.FunctionComponent<HeaderProps> = ({
   date,
-  classes,
   setDate,
   nextDisabled,
   prevDisabled,
   onClickNext,
   onClickPrevious,
 }) => {
+  const classes = useStyles()
+
   const handleMonthChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setDate(setMonth(date, parseInt(event.target.value as string)))
   }
@@ -125,6 +119,4 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   )
 }
 
-export default withStyles(styles)(Header) as React.FunctionComponent<
-  HeaderProps
->
+export default Header

@@ -1,37 +1,29 @@
 import React from 'react'
-import {
-  Paper,
-  Grid,
-  Typography,
-  Divider,
-  createStyles,
-  WithStyles,
-  Theme,
-  withStyles,
-} from '@material-ui/core'
+import { Paper, Grid, Typography, Divider } from '@material-ui/core'
 import { format, differenceInCalendarMonths } from 'date-fns'
 import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt'
 import Month from './Month'
 import DefinedRanges from './DefinedRanges'
 import { DateRange, DefinedRange, Setter, NavigationAction } from '../types'
 import { MARKERS } from '..'
+import { makeStyles } from '@mui/styles'
 
-const styles = (theme: Theme) =>
-  createStyles({
-    header: {
-      padding: '20px 70px',
-    },
-    headerItem: {
-      flex: 1,
-      textAlign: 'center',
-    },
-    divider: {
-      borderLeft: `1px solid ${theme.palette.action.hover}`,
-      marginBottom: 20,
-    },
-  })
+const useStyles = makeStyles((theme) => ({
+  header: {
+    padding: '20px 70px',
+  },
+  headerItem: {
+    flex: 1,
+    textAlign: 'center',
+  },
+  divider: {
+    //@ts-ignore
+    borderLeft: `1px solid ${theme.palette.action.hover}`,
+    marginBottom: 20,
+  },
+}))
 
-interface MenuProps extends WithStyles<typeof styles> {
+interface MenuProps {
   dateRange: DateRange
   ranges: DefinedRange[]
   minDate: Date
@@ -53,7 +45,6 @@ interface MenuProps extends WithStyles<typeof styles> {
 
 const Menu: React.FunctionComponent<MenuProps> = (props) => {
   const {
-    classes,
     ranges,
     dateRange,
     minDate,
@@ -66,6 +57,8 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
     helpers,
     handlers,
   } = props
+
+  const classes = useStyles()
   const { startDate, endDate } = dateRange
   const canNavigateCloser =
     differenceInCalendarMonths(secondMonth, firstMonth) >= 2
@@ -123,5 +116,4 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
   )
 }
 
-//@ts-ignore
-export default withStyles(styles)(Menu) as React.FunctionComponent<MonthProps>
+export default Menu

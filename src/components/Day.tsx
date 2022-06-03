@@ -1,15 +1,9 @@
 import * as React from 'react'
-import {
-  IconButton,
-  Typography,
-  createStyles,
-  Theme,
-  WithStyles,
-  withStyles,
-} from '@material-ui/core'
+import { IconButton, Typography, createStyles, Theme } from '@material-ui/core'
 import { combine } from '../utils'
+import { makeStyles } from '@mui/styles'
 
-interface DayProps extends WithStyles<typeof styles> {
+interface DayProps {
   filled?: boolean
   outlined?: boolean
   highlighted?: boolean
@@ -21,8 +15,8 @@ interface DayProps extends WithStyles<typeof styles> {
   value: number | string
 }
 
-const styles = (theme: Theme) =>
-  createStyles({
+const useStyles = makeStyles((theme: any) => {
+  return {
     leftBorderRadius: {
       borderRadius: '50% 0 0 50%',
     },
@@ -55,10 +49,11 @@ const styles = (theme: Theme) =>
     contrast: {
       color: theme.palette.primary.contrastText,
     },
-  })
+  }
+})
 
 const Day: React.FunctionComponent<DayProps> = (props) => {
-  const { classes } = props
+  const classes = useStyles()
   return (
     <div
       className={combine(
@@ -92,5 +87,5 @@ const Day: React.FunctionComponent<DayProps> = (props) => {
     </div>
   )
 }
-//@ts-ignore
-export default withStyles(styles)(Day) as React.FunctionComponent<MonthProps>
+
+export default Day

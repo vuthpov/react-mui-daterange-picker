@@ -1,13 +1,5 @@
 import * as React from 'react'
-import {
-  Paper,
-  Grid,
-  Typography,
-  createStyles,
-  Theme,
-  WithStyles,
-  withStyles,
-} from '@material-ui/core'
+import { Paper, Grid, Typography } from '@material-ui/core'
 import {
   getDate,
   isSameMonth,
@@ -26,28 +18,28 @@ import {
 import Header from './Header'
 import Day from './Day'
 import { NavigationAction, DateRange } from '../types'
+import { makeStyles } from '@mui/styles'
 
 const WEEK_DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      width: 290,
-    },
-    weekDaysContainer: {
-      marginTop: 10,
-      paddingLeft: 30,
-      paddingRight: 30,
-    },
-    daysContainer: {
-      paddingLeft: 15,
-      paddingRight: 15,
-      marginTop: 15,
-      marginBottom: 20,
-    },
-  })
+const useStyles = makeStyles({
+  root: {
+    width: 290,
+  },
+  weekDaysContainer: {
+    marginTop: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+  },
+  daysContainer: {
+    paddingLeft: 15,
+    paddingRight: 15,
+    marginTop: 15,
+    marginBottom: 20,
+  },
+})
 
-interface MonthProps extends WithStyles<typeof styles> {
+interface MonthProps {
   value: Date
   marker: symbol
   dateRange: DateRange
@@ -67,7 +59,6 @@ interface MonthProps extends WithStyles<typeof styles> {
 
 const Month: React.FunctionComponent<MonthProps> = (props) => {
   const {
-    classes,
     helpers,
     handlers,
     value: date,
@@ -77,6 +68,8 @@ const Month: React.FunctionComponent<MonthProps> = (props) => {
     minDate,
     maxDate,
   } = props
+
+  const classes = useStyles()
 
   const [back, forward] = props.navState
   return (
@@ -156,4 +149,4 @@ const Month: React.FunctionComponent<MonthProps> = (props) => {
 }
 
 //@ts-ignore
-export default withStyles(styles)(Month) as React.FunctionComponent<MonthProps>
+export default Month
