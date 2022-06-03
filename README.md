@@ -49,12 +49,10 @@ import { DateRangePicker, DateRange } from "@matharumanpreet00/react-daterange-p
 type Props = {}
 
 const App: React.FunctionComponent<Props> = props => {
-	const [open, setOpen] = React.useState(false);
 	const [dateRange, setDateRange] = React.useState<DateRange>({});
 
 	return (
 		<DateRangePicker
-			open={open}
 			onChange={range => setDateRange(range)}
 		/>
 	);
