@@ -1,6 +1,6 @@
 {
 	"name": "@vutpov/react-mui-daterange-picker",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "A react date range picker using Material Design",
 	"author": {
 		"email": "vuthpov26@gmail.com",
