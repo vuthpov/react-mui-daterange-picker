@@ -14,7 +14,7 @@ yarn add @vutpov/react-mui-daterange-picker
 
 ```tsx
 import React from "react";
-import { DateRangePicker, DateRange } from "@matharumanpreet00/react-daterange-picker";
+import { DateRangePicker, DateRange } from "@vutpov/react-mui-daterange-picker";
 
 type Props = {}
 type State = {
@@ -30,7 +30,6 @@ class App extends React.Component<Props, State> {
 	render() {
 		return (
 			<DateRangePicker
-				
 				onChange={range => this.setState({ dateRange: range })}
 			/>
 		);
@@ -44,7 +43,7 @@ export default App;
 
 ```tsx
 import React from "react";
-import { DateRangePicker, DateRange } from "@matharumanpreet00/react-daterange-picker";
+import { DateRangePicker, DateRange } from "@vutpov/react-mui-daterange-picker";
 
 type Props = {}
 
