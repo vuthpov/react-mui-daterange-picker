@@ -36,7 +36,6 @@ const getValidatedMonths = (range: DateRange, minDate: Date, maxDate: Date) => {
 };
 
 interface DateRangePickerProps {
-	open: boolean;
 	initialDateRange?: DateRange;
 	definedRanges?: DefinedRange[];
 	minDate?: Date | string;
@@ -48,7 +47,6 @@ const DateRangePickerImpl: React.FunctionComponent<DateRangePickerProps> = props
 	const today = new Date();
 
 	const {
-		open,
 		onChange,
 		initialDateRange,
 		minDate,
@@ -150,8 +148,7 @@ const DateRangePickerImpl: React.FunctionComponent<DateRangePickerProps> = props
 		onMonthNavigate
 	};
 
-	return open ? (
-		<Menu
+	return <Menu
 			dateRange={dateRange}
 			minDate={minDateValid}
 			maxDate={maxDateValid}
@@ -164,7 +161,6 @@ const DateRangePickerImpl: React.FunctionComponent<DateRangePickerProps> = props
 			helpers={helpers}
 			handlers={handlers}
 		/>
-	) : null;
 };
 
 export { DateRange, DefinedRange } from "./types";
